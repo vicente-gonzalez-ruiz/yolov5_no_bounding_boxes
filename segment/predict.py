@@ -193,6 +193,19 @@ def run(
                         # annotator.box_label(xyxy, label, color=colors(c, True)) # This line draw the bounding boxes and the labels
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
                     if save_crop:
+                        # (ChatGPT) get the mask of the first segment
+                        segment_mask = segments[j]['mask']
+
+                        # (ChatGPT) multiply the mask with the input image pixel-wise to get the masked image
+                        masked_image = im0 * segment_mask
+
+                        # (ChatGPT) get the bounding box of the first segment
+                        bbox = segments[j]['box']
+
+                        # (ChatGPT) crop the masked image based on the bounding box
+                        imc = masked_image[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+                        
+                        # This was here ...
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
