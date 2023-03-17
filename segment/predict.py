@@ -32,6 +32,7 @@ import argparse
 import os
 import platform
 import sys
+import numpy as np
 from pathlib import Path
 
 import torch
@@ -204,7 +205,10 @@ def run(
 
                         # (ChatGPT) crop the masked image based on the bounding box
                         #imc = masked_image[bbox[1]:bbox[3], bbox[0]:bbox[2]]
-                        imc *= masks[j]
+                        #imc *= masks[j]
+                        imc[...,0] *= ~masks[j].cpu().numpy().astype(np.uint8)
+                        imc[...,1] *= ~masks[j].cpu().numpy().astype(np.uint8)
+                        imc[...,2] *= ~masks[j].cpu().numpy().astype(np.uint8)
                         
                         # This was here ...
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
