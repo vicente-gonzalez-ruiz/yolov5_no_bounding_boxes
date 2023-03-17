@@ -194,7 +194,7 @@ def run(
                         # annotator.box_label(xyxy, label, color=colors(c, True)) # This line draw the bounding boxes and the labels
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
                     if save_crop:
-                        if j > 0:
+                        if len(det[:, :6]) > 0:
                             cpu_mask = masks[j].cpu().numpy().astype(np.uint8)
                             imc_masked = imc.copy()
                             imc_masked[..., 0] = imc_masked[..., 0] * (1 - cpu_mask)
