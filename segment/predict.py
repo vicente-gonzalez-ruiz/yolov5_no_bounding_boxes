@@ -194,16 +194,19 @@ def run(
                         # annotator.box_label(xyxy, label, color=colors(c, True)) # This line draw the bounding boxes and the labels
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
                     if save_crop:
-                        if len(det[:, :6]) > 1:
-                            cpu_mask = masks[j].cpu().numpy().astype(np.uint8)
-                            imc_masked = imc.copy()
-                            imc_masked[..., 0] = imc_masked[..., 0] * (1 - cpu_mask)
-                            imc_masked[..., 1] = imc_masked[..., 1] * (1 - cpu_mask)
-                            imc_masked[..., 2] = imc_masked[..., 2] * (1 - cpu_mask)
-                            save_one_box(xyxy, imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
-                        else:
-                            # This was here ...
-                            save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                        #if len(det[:, :6]) > 1:
+                        cpu_mask = masks[j].cpu().numpy().astype(np.uint8)
+                        imc_masked = imc.copy()
+                        imc_masked[..., 0] = imc_masked[..., 0] * cpu_mask
+                        imc_masked[..., 1] = imc_masked[..., 1] * cpu_mask
+                        imc_masked[..., 2] = imc_masked[..., 2] * cpu_mask
+                        #imc_masked[..., 0] = 255 * (1 - cpu_mask)
+                        #imc_masked[..., 1] = 255 * (1 - cpu_mask)
+                        #imc_masked[..., 2] = 255 * (1 - cpu_mask)
+                        save_one_box(xyxy, imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                        #else:
+                        #    # This was here ...
+                        #    save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
             im0 = annotator.result()
