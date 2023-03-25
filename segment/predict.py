@@ -191,22 +191,26 @@ def run(
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                        # begin g0nx0s
                         # annotator.box_label(xyxy, label, color=colors(c, True)) # This line draw the bounding boxes and the labels
+                        # end g0nx0s
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
                     if save_crop:
-                        #if len(det[:, :6]) > 1:
-                        cpu_mask = masks[j].cpu().numpy().astype(np.uint8)
-                        imc_masked = imc.copy()
-                        imc_masked[..., 0] = imc_masked[..., 0] * cpu_mask
-                        imc_masked[..., 1] = imc_masked[..., 1] * cpu_mask
-                        imc_masked[..., 2] = imc_masked[..., 2] * cpu_mask
-                        #imc_masked[..., 0] = 255 * (1 - cpu_mask)
-                        #imc_masked[..., 1] = 255 * (1 - cpu_mask)
-                        #imc_masked[..., 2] = 255 * (1 - cpu_mask)
-                        save_one_box(xyxy, imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
-                        #else:
-                        #    # This was here ...
-                        #    save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                        # begin g0nx0s
+                        ##if len(det[:, :6]) > 1:
+                        #cpu_mask = masks[j].cpu().numpy().astype(np.uint8)
+                        #imc_masked = imc.copy()
+                        #imc_masked[..., 0] = imc_masked[..., 0] * cpu_mask
+                        #imc_masked[..., 1] = imc_masked[..., 1] * cpu_mask
+                        #imc_masked[..., 2] = imc_masked[..., 2] * cpu_mask
+                        ##imc_masked[..., 0] = 255 * (1 - cpu_mask)
+                        ##imc_masked[..., 1] = 255 * (1 - cpu_mask)
+                        ##imc_masked[..., 2] = 255 * (1 - cpu_mask)
+                        #save_one_box(xyxy, imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                        ##else:
+                        ##    # This was here ...
+                        # end g0nx0s
+                        save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
             im0 = annotator.result()
