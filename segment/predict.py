@@ -206,11 +206,11 @@ def run(
                         ##imc_masked[..., 0] = 255 * (1 - cpu_mask)
                         ##imc_masked[..., 1] = 255 * (1 - cpu_mask)
                         ##imc_masked[..., 2] = 255 * (1 - cpu_mask)
-                        #save_one_box(xyxy, imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                        save_one_box([0,0,cpu_mask.shape[1],cpu_mask.shape[0]], imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
                         ##else:
                         ##    # This was here ...
                         # end g0nx0s
-                        save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                        #save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
             im0 = annotator.result()
