@@ -207,7 +207,7 @@ def run(
                         #imc_masked[..., 1] = 255 * (1 - cpu_mask)
                         #imc_masked[..., 2] = 255 * (1 - cpu_mask)
                         save_one_box([0,0,cpu_mask.shape[1],cpu_mask.shape[0]], imc_masked, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
-                        print(p.stem)
+                        print(p.stem, flush=True)
                         #else:
                         #    # This was here ...
                         # end g0nx0s
