@@ -195,7 +195,7 @@ def run(
                         # annotator.box_label(xyxy, label, color=colors(c, True)) # This line draw the bounding boxes and the labels
                         # end g0nx0s
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
-                        print(f'{p.stem}_{j} ', xyxy.numpy(), flush=True)
+                        print(f'{p.stem}_{j} ', [for i.numpy() in [xyxy]], flush=True)
                     if save_crop:
                         # begin g0nx0s
                         #if len(det[:, :6]) > 1:
