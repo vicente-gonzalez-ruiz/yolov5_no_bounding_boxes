@@ -198,7 +198,7 @@ def run(
                         print(f'{p.stem}_{j} ', *[int(i.numpy()) for i in xyxy], txt_path, flush=True)
                         #with open(f'{p.stem}_{j}_crop.txt', 'a') as f:
                             #f.write(str([int(i.numpy()) for i in xyxy]))
-                        np.savetxt(f'{p.stem}_{j}_crop.txt', np.array([int(i.numpy()) for i in xyxy]))
+                        np.savetxt(f'{p.stem}_{j}_crop.txt', np.array([int(i.numpy()) for i in xyxy], dtype=np.int))
                     if save_crop:
                         # begin g0nx0s
                         #if len(det[:, :6]) > 1:
