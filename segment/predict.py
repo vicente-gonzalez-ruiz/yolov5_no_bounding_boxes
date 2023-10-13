@@ -197,7 +197,7 @@ def run(
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
                         print(f'{p.stem}_{j} ', *[int(i.numpy()) for i in xyxy], flush=True)
                         with open(f'{p.stem}_{j}_crop.txt', 'a') as f:
-                            f.write([int(i.numpy()) for i in xyxy])
+                            f.write(str([int(i.numpy()) for i in xyxy]))
                     if save_crop:
                         # begin g0nx0s
                         #if len(det[:, :6]) > 1:
