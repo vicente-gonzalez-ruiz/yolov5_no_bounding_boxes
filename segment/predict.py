@@ -120,7 +120,7 @@ def run(
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
     for path, im, im0s, vid_cap, s in dataset:
         with dt[0]:
-            im = torch.from_numpy(im).to(model.device)f'{p.stem}_{j}
+            im = torch.from_numpy(im).to(model.device)
             im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
             im /= 255  # 0 - 255 to 0.0 - 1.0
             if len(im.shape) == 3:
@@ -195,7 +195,7 @@ def run(
                         # annotator.box_label(xyxy, label, color=colors(c, True)) # This line draw the bounding boxes and the labels
                         # end g0nx0s
                         # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
-                        print(f'{p.stem}_{j} ', [i for i in [xyxy]], flush=True)
+                        print(f'{p.stem}_{j} ', [i.numpy() for i in [xyxy]], flush=True)
                     if save_crop:
                         # begin g0nx0s
                         #if len(det[:, :6]) > 1:
